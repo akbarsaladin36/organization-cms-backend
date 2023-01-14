@@ -25,7 +25,8 @@ module.exports = {
   },
 
   isAdmin: (req, res, next) => {
-    if (req.decodeToken.user_status === 'admin') {
+    // console.log(req.decodeToken);
+    if (req.decodeToken.roles_id === 1) {
       next()
     } else {
       return helper.response(res, 403, 'this page can be accessed by admin!')

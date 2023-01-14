@@ -1,6 +1,6 @@
-<h1 align="center">Express - Backend Boilerplate with MySQL</h1>
+<h1 align="center">Backend Organization CMS - Nodejs & Mysql</h1>
 
-This API is created by me to make backend job more easier. With this boilerplate, you can free to use, change, and add any request that you need for your backend website. This API use Express as Nodejs framework and MySQL as store database. [More about Express](https://en.wikipedia.org/wiki/Express.js)
+This API is created by me to make backend for content management system for organization. This API use Express as Nodejs framework and MySQL as store database. [More about Express](https://en.wikipedia.org/wiki/Express.js)
 
 ## Built With
 
@@ -45,6 +45,9 @@ SMTP_PASSWORD = <YOUR PASSWORD>
 ## Feature
 
 1. Login and Register API
+2. Create,Update,and Delete Roles (For Admin)
+3. Create and Delete User (For Admin)
+4. Update User
 
 ## License
 

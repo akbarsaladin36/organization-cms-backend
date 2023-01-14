@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const helper = require('../../helpers/helper')
 const authModel = require('./auth_model')
-const nodemailer = require('nodemailer')
+// const nodemailer = require('nodemailer')
 require('dotenv').config()
 
 module.exports = {
@@ -26,42 +26,42 @@ module.exports = {
           user_email: userEmail,
           user_username: userName,
           user_password: encryptPassword,
-          user_image: '',
-          user_verify: 'N'
+          roles_id: 2,
+          user_verify_status: 'N'
         }
         const result = await authModel.registerUserData(setData)
         delete result.user_password
 
-        const transporter = nodemailer.createTransport({
-          host: 'smtp.gmail.com',
-          port: 587,
-          secure: false,
-          auth: {
-            user: process.env.SMTP_USER,
-            pass: process.env.SMTP_PASSWORD
-          }
-        })
+        // const transporter = nodemailer.createTransport({
+        //   host: 'smtp.gmail.com',
+        //   port: 587,
+        //   secure: false,
+        //   auth: {
+        //     user: process.env.SMTP_USER,
+        //     pass: process.env.SMTP_PASSWORD
+        //   }
+        // })
 
-        const mailOptions = {
-          from: '"Test Admin" <admin-test.gmail.com>',
-          to: result.user_email,
-          subject: 'Project App- Activation Email',
-          html: `<b>Congratulation! Now you can activate your account now. Please click this link to activate it.</b><a href="http://localhost:3006/backend6/api/v1/auth/user-activation/${result.id}">Click!</>`
-        }
+        // const mailOptions = {
+        //   from: '"Test Admin" <admin-test.gmail.com>',
+        //   to: result.user_email,
+        //   subject: 'Project App- Activation Email',
+        //   html: `<b>Congratulation! Now you can activate your account now. Please click this link to activate it.</b><a href="http://localhost:3006/backend6/api/v1/auth/user-activation/${result.id}">Click!</>`
+        // }
 
-        transporter.sendMail(mailOptions, function (error, info) {
-          if (error) {
-            console.log(error)
-            return helper.response(res, 400, 'Email not send !')
-          } else {
-            console.log('Email have been sent to:' + info.response)
-            return helper.response(
-              res,
-              200,
-              'Email verification is sent. Please check your email.'
-            )
-          }
-        })
+        // transporter.sendMail(mailOptions, function (error, info) {
+        //   if (error) {
+        //     console.log(error)
+        //     return helper.response(res, 400, 'Email not send !')
+        //   } else {
+        //     console.log('Email have been sent to:' + info.response)
+        //     return helper.response(
+        //       res,
+        //       200,
+        //       'Email verification is sent. Please check your email.'
+        //     )
+        //   }
+        // })
 
         return helper.response(
           res,
@@ -126,7 +126,7 @@ module.exports = {
     try {
       const { id } = req.params
       const result = await authModel.updateVerifyUserData(
-        { user_verify: 'Y' },
+        { user_verify_status: 'Y' },
         id
       )
       return helper.response(
