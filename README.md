@@ -48,6 +48,8 @@ SMTP_PASSWORD = <YOUR PASSWORD>
 2. Create,Update,and Delete Roles (For Admin)
 3. Create and Delete User (For Admin)
 4. Update User
+5. Get All Tasks By Sender and Receiver
+6. Create,Update,and Delete Task (Coming Soon)
 
 ## License
 

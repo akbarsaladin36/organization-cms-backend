@@ -1,7 +1,6 @@
 const bcrypt = require('bcrypt')
 const usersModel = require('./users_model')
 const helper = require('../../helpers/helper')
-const _ = require('lodash')
 
 module.exports = {
     allUsers: async (req, res) => {
