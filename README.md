@@ -49,7 +49,7 @@ SMTP_PASSWORD = <YOUR PASSWORD>
 3. Create and Delete User (For Admin)
 4. Update User
 5. Get All Tasks By Sender and Receiver
-6. Create,Update,and Delete Task (Coming Soon)
+6. Create,Update,and Delete Task
 
 ## License
 

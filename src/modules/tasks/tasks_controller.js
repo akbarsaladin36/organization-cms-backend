@@ -94,5 +94,59 @@ module.exports = {
             console.log(error)
             return helper.response(res,404,'Bad Request',null)
         }
+    },
+    createTask: async (req,res) => {
+        try {
+            const { receiverID,taskTitle,taskDescription,taskLevel } = req.body
+            const setData = {
+                user_id: req.decodeToken.user_id,
+                to_user_id: receiverID,
+                task_title: taskTitle,
+                task_description: taskDescription,
+                task_level: taskLevel
+            }
+            const result = await tasksModel.createNewTask(setData)
+            return helper.response(res,200,'A new tasks is succesfully created!',result)
+        } catch (error) {
+            console.log(error)
+            return helper.response(res,404,'Bad Request',null)
+        }
+    },
+    updateTask: async (req,res) => {
+        try {
+            const { id } = req.params
+            const { taskTitle,taskDescription,taskLevel } = req.body
+            const checkTask = await tasksModel.getOneTask(id)
+            if(checkTask.length>0) {
+                const setData = {
+                    task_title: taskTitle,
+                    task_description: taskDescription,
+                    task_level: taskLevel,
+                    task_updated_at: new Date(Date.now())
+                }
+                const result = await tasksModel.updateOneTask(id,setData)
+                return helper.response(res,200,`The task with id ${id} is succesfully updated!`,result)
+            } else {
+                return helper.response(res,400,`The task with id ${id} is not found! Please try again!`,null)
+            }
+        } catch (error) {
+            console.log(error)
+            return helper.response(res,404,'Bad Request',null)
+        }
+    },
+    deleteTask: async (req,res) => {
+        try {
+            const { id } = req.params
+            const checkTask = await tasksModel.getOneTask(id)
+            if(checkTask.length>0) {
+                const result = await tasksModel.deleteOneTask(id)
+                return helper.response(res,200,`The task id ${id} is succesfully deleted!`,result)
+            } else {
+                return helper.response(res,400,`The task id ${id} is not found!`,null)
+            }
+        } catch (error) {
+            console.log(error)
+            return helper.response(res,404,'Bad Request',null)
+        }
     }
 }
