@@ -50,6 +50,8 @@ SMTP_PASSWORD = <YOUR PASSWORD>
 4. Update User
 5. Get All Tasks By Sender and Receiver
 6. Create,Update,and Delete Task
+7. Get All Messages By Sender and Receiver
+8. Create,Update,and Delete Message
 
 ## License
 
